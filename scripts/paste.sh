@@ -6,6 +6,8 @@ source "${CURRENT_DIR}/helpers.sh"
 
 if is_osx && is_command_available 'reattach-to-user-namespace'; then
   reattach-to-user-namespace pbpaste | tmux load-buffer -
+elif is_command_available 'xclip'; then
+  xclip -o -selection clipboard | tmux load-buffer -
 fi
 
 args="$*"
